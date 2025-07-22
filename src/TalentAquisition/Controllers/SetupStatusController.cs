@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TalentAquisition.Core.DTOs;
 using TalentAquisition.Core.IServices;
+using TalentAquisition.Models;
 
 namespace TalentAquisition.Controllers
 {
@@ -23,18 +24,21 @@ namespace TalentAquisition.Controllers
         public async Task<IActionResult> GetAll()
         {
             var statuses = await _service.GetAllAsync();
-            return Json(new
-            {
-                success = true,
-                data = statuses
-            });
+            return Json(JsonResponse.Success(statuses));
         }
 
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {
-            await _service.DeleteAsync(id);
-            return Json(new { success = true, message = "Delete successful" });
+            try
+            {
+                await _service.DeleteAsync(id);
+                return Json(JsonResponse.Success(message: "Status deleted successfully"));
+            }
+            catch (Exception ex)
+            {
+                return Json(JsonResponse.Error(ex.Message));
+            }
         }
 
         [HttpGet]
@@ -55,33 +59,33 @@ namespace TalentAquisition.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] SetupStatusDto status)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                await _service.AddAsync(status);
-                return Json(new
-                {
-                    success = true,
-                    message = "Added successfully",
-                    data = status
-                });
+                var errors = ModelState.Values
+                    .SelectMany(v => v.Errors)
+                    .Select(e => e.ErrorMessage)
+                    .ToList();
+                return Json(JsonResponse.Error("Validation failed", errors));
             }
-            return BadRequest(ModelState);
+
+            await _service.AddAsync(status);
+            return Json(JsonResponse.Success(status, "Status created successfully"));
         }
 
         [HttpPut]
         public async Task<IActionResult> Edit([FromBody] SetupStatusDto status)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                await _service.UpdateAsync(status);
-                return Json(new
-                {
-                    success = true,
-                    message = "Updated successfully",
-                    data = status
-                });
+                var errors = ModelState.Values
+                    .SelectMany(v => v.Errors)
+                    .Select(e => e.ErrorMessage)
+                    .ToList();
+                return Json(JsonResponse.Error("Validation failed", errors));
             }
-            return BadRequest(ModelState);
+
+            await _service.UpdateAsync(status);
+            return Json(JsonResponse.Success(status, "Status updated successfully"));
         }
     }
 }
