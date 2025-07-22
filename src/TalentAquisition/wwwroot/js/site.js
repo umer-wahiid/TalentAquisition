@@ -1,22 +1,4 @@
-﻿$(document).ready(function () {
-	function ChildMenu(Id) {
-		debugger;
-		if (Id !== null) {
-			$.ajax({
-				url: "/Base/GetChildRecord",
-				type: "GET",
-				data: { Id: Id },
-				success: function (data) {
-					console.log(data);
-					$.each(data, function (index, value) {
-						// Handle data here
-					});
-				},
-				error: function (xhr, status, error) {
-					// Handle error if needed
-					console.error(error);
-				}
-			});
-		}
-	}
-});
+﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
+// for details on configuring this project to bundle and minify static web assets.
+
+// Write your JavaScript code.
