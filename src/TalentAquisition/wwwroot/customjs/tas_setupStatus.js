@@ -35,7 +35,7 @@ var tas_setupStatus = {
 
                     // Edit button
                     const $editBtn = $(`
-                        <button class="btn btn-sm btn-primary grid-action-icon elm_edit" 
+                        <button class="btn btn-sm grid-action-icon elm_edit" 
                                 title="Edit" data-id="${statusId}">
                             <i class="fas fa-edit"></i>
                         </button>
@@ -43,7 +43,7 @@ var tas_setupStatus = {
 
                     // Delete button
                     const $deleteBtn = $(`
-                        <button class="btn btn-sm btn-danger grid-action-icon elm_delete" 
+                        <button class="btn btn-sm grid-action-icon elm_delete" 
                                 title="Delete" data-id="${statusId}">
                             <i class="fas fa-trash"></i>
                         </button>
