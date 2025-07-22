@@ -2,7 +2,7 @@
 using TalentAquisition.Core.DTOs;
 using TalentAquisition.Core.IRepositories;
 using TalentAquisition.Infrastructure.Context;
-using TalentAquisition.Infrastructure.Entities;
+using TalentAquisition.Infrastructure.Extensions.Mappings;
 
 namespace TalentAquisition.Infrastructure.Repositories
 {
@@ -15,19 +15,12 @@ namespace TalentAquisition.Infrastructure.Repositories
             _context = context;
         }
 
-        public async Task AddAsync(SetupStatusDto entity)
+        public async Task AddAsync(SetupStatusDto dto)
         {
-            var dbEntity = new TasSetupStatus
-            {
-                Name = entity.Name,
-                CreatedAt = DateTime.UtcNow,
-                IsDeleted = false
-            };
-
-            await _context.TasSetupStatuses.AddAsync(dbEntity);
+            var entity = dto.ToEntity();
+            await _context.TasSetupStatuses.AddAsync(entity);
             await _context.SaveChangesAsync();
-
-            entity.StatusId = dbEntity.StatusId;
+            dto.StatusId = entity.StatusId;
         }
 
         public async Task DeleteAsync(int id)
@@ -45,38 +38,23 @@ namespace TalentAquisition.Infrastructure.Repositories
         {
             return await _context.TasSetupStatuses
                 .Where(s => !(s.IsDeleted ?? false))
-                .Select(s => new SetupStatusDto
-                {
-                    StatusId = s.StatusId,
-                    Name = s.Name,
-                    CreatedAt = s.CreatedAt,
-                    UpdatedAt = s.UpdatedAt,
-                    IsDeleted = s.IsDeleted
-                }).ToListAsync();
+                .Select(s => s.ToDto())
+                .ToListAsync();
         }
 
         public async Task<SetupStatusDto> GetByIdAsync(int id)
         {
             var entity = await _context.TasSetupStatuses.FindAsync(id);
-            if (entity == null || entity.IsDeleted == true) return null;
-
-            return new SetupStatusDto
-            {
-                StatusId = entity.StatusId,
-                Name = entity.Name,
-                CreatedAt = entity.CreatedAt,
-                UpdatedAt = entity.UpdatedAt,
-                IsDeleted = entity.IsDeleted
-            };
+            return entity?.ToDto();
         }
 
-        public async Task UpdateAsync(SetupStatusDto entity)
+        public async Task UpdateAsync(SetupStatusDto dto)
         {
-            var dbEntity = await _context.TasSetupStatuses.FindAsync(entity.StatusId);
-            if (dbEntity != null)
+            var entity = await _context.TasSetupStatuses.FindAsync(dto.StatusId);
+            if (entity != null)
             {
-                dbEntity.Name = entity.Name;
-                dbEntity.UpdatedAt = DateTime.UtcNow;
+                entity.Name = dto.Name;
+                entity.UpdatedAt = DateTime.UtcNow;
                 await _context.SaveChangesAsync();
             }
         }
