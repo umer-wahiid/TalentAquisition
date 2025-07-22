@@ -1,9 +1,8 @@
 ﻿using TalentAquisition.Core.DTOs;
 
-namespace TalentAquisition.Core.Interfaces
+namespace TalentAquisition.Core.IRepositories
 {
     public interface ISetupStatusRepository : IRepository<SetupStatusDto>
     {
-        Task<IEnumerable<SetupStatusDto>> GetActiveStatusesAsync();
     }
 }

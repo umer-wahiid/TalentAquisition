@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TalentAquisition.Core.DTOs;
-using TalentAquisition.Core.Interfaces;
+using TalentAquisition.Core.IRepositories;
 using TalentAquisition.Infrastructure.Context;
 using TalentAquisition.Infrastructure.Entities;
 
@@ -79,18 +79,6 @@ namespace TalentAquisition.Infrastructure.Repositories
                 dbEntity.UpdatedAt = DateTime.UtcNow;
                 await _context.SaveChangesAsync();
             }
-        }
-
-        public async Task<IEnumerable<SetupStatusDto>> GetActiveStatusesAsync()
-        {
-            return await _context.TasSetupStatuses
-                .Where(s => !(s.IsDeleted ?? false))
-                .Select(s => new SetupStatusDto
-                {
-                    StatusId = s.StatusId,
-                    Name = s.Name
-                })
-                .ToListAsync();
         }
     }
 }

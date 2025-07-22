@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using TalentAquisition.Core.Interfaces;
+using TalentAquisition.Core.IRepositories;
+using TalentAquisition.Core.IServices;
 using TalentAquisition.Infrastructure.Context;
 using TalentAquisition.Infrastructure.Repositories;
 
@@ -19,7 +20,7 @@ namespace TalentAquisition.Infrastructure.Extensions
             services.AddScoped<ISetupStatusRepository, SetupStatusRepository>();
 
             // Add other infrastructure services here
-            // services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<ISetupStatusService, SetupStatusService>();
 
             return services;
         }

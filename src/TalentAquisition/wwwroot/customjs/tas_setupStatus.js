@@ -113,7 +113,6 @@ var tas_setupStatus = {
         if (confirm('Are you sure you want to delete this status?')) {
             tas_ajaxHelper.delete(`/SetupStatus/Delete/${statusId}`, () => {
                 this.initializeGrid();
-                tas_helper.notify('Status deleted successfully', 1);
             });
         }
     }

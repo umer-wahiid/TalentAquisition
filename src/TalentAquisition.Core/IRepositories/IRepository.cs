@@ -1,4 +1,4 @@
-﻿namespace TalentAquisition.Core.Interfaces
+﻿namespace TalentAquisition.Core.IRepositories
 {
     public interface IRepository<T> where T : class
     {

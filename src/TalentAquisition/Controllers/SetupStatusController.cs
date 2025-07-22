@@ -1,27 +1,28 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TalentAquisition.Core.DTOs;
-using TalentAquisition.Core.Interfaces;
+using TalentAquisition.Core.IServices;
 
 namespace TalentAquisition.Controllers
 {
     public class SetupStatusController : Controller
     {
-        private readonly ISetupStatusRepository _repository;
+        private readonly ISetupStatusService _service;
 
-        public SetupStatusController(ISetupStatusRepository repository)
+        public SetupStatusController(ISetupStatusService service)
         {
-            _repository = repository;
+            _service = service;
         }
 
         public IActionResult Index()
         {
+            ViewData["Title"] = "Setup Status";
             return View();
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var statuses = await _repository.GetAllAsync();
+            var statuses = await _service.GetAllAsync();
             return Json(new
             {
                 success = true,
@@ -32,14 +33,14 @@ namespace TalentAquisition.Controllers
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {
-            await _repository.DeleteAsync(id);
+            await _service.DeleteAsync(id);
             return Json(new { success = true, message = "Delete successful" });
         }
 
         [HttpGet]
         public async Task<IActionResult> GetById(int id)
         {
-            var status = await _repository.GetByIdAsync(id);
+            var status = await _service.GetByIdAsync(id);
             if (status == null)
             {
                 return NotFound();
@@ -56,7 +57,7 @@ namespace TalentAquisition.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _repository.AddAsync(status);
+                await _service.AddAsync(status);
                 return Json(new
                 {
                     success = true,
@@ -72,7 +73,7 @@ namespace TalentAquisition.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _repository.UpdateAsync(status);
+                await _service.UpdateAsync(status);
                 return Json(new
                 {
                     success = true,
