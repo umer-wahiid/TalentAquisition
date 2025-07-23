@@ -56,4 +56,6 @@ public partial class TasMainUser
     public int? EntityId { get; set; }
 
     public string? Job { get; set; }
+
+    public virtual ICollection<TasMainEmployee> TasMainEmployees { get; set; } = new List<TasMainEmployee>();
 }

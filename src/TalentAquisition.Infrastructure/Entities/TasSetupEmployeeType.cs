@@ -3,13 +3,11 @@ using System.Collections.Generic;
 
 namespace TalentAquisition.Infrastructure.Entities;
 
-public partial class TasSetupCurrentcompany
+public partial class TasSetupEmployeeType
 {
-    public int CurrentCompanyId { get; set; }
+    public int EmployeeTypeId { get; set; }
 
     public string? Name { get; set; }
-
-    public string? Code { get; set; }
 
     public bool? IsDeleted { get; set; }
 

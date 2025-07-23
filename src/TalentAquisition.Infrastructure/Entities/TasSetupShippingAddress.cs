@@ -18,4 +18,6 @@ public partial class TasSetupShippingAddress
     public DateTime? CreatedAt { get; set; }
 
     public DateTime? UpdatedAt { get; set; }
+
+    public virtual ICollection<TasMainEmployee> TasMainEmployees { get; set; } = new List<TasMainEmployee>();
 }

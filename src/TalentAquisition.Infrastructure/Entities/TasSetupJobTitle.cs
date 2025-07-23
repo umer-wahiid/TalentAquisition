@@ -24,4 +24,6 @@ public partial class TasSetupJobTitle
     public string? Ipaddress { get; set; }
 
     public string? Macaddress { get; set; }
+
+    public virtual ICollection<TasMainEmployee> TasMainEmployees { get; set; } = new List<TasMainEmployee>();
 }

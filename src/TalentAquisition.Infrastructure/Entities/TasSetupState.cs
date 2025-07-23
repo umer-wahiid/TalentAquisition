@@ -20,4 +20,10 @@ public partial class TasSetupState
     public DateTime? CreatedAt { get; set; }
 
     public DateTime? UpdatedAt { get; set; }
+
+    public virtual ICollection<TasMainEmployee> TasMainEmployeeResidesIns { get; set; } = new List<TasMainEmployee>();
+
+    public virtual ICollection<TasMainEmployee> TasMainEmployeeStateId2Navigations { get; set; } = new List<TasMainEmployee>();
+
+    public virtual ICollection<TasMainEmployee> TasMainEmployeeStates { get; set; } = new List<TasMainEmployee>();
 }

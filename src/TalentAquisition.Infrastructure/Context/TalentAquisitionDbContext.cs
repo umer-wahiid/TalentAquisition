@@ -20,6 +20,8 @@ public partial class TalentAquisitionDbContext : DbContext
 
     public virtual DbSet<TasMainEmailTemplate> TasMainEmailTemplates { get; set; }
 
+    public virtual DbSet<TasMainEmployee> TasMainEmployees { get; set; }
+
     public virtual DbSet<TasMainField> TasMainFields { get; set; }
 
     public virtual DbSet<TasMainLeadCompensation> TasMainLeadCompensations { get; set; }
@@ -47,6 +49,8 @@ public partial class TalentAquisitionDbContext : DbContext
     public virtual DbSet<TasSetupCurrentcompany> TasSetupCurrentcompanies { get; set; }
 
     public virtual DbSet<TasSetupDepartment> TasSetupDepartments { get; set; }
+
+    public virtual DbSet<TasSetupEmployeeType> TasSetupEmployeeTypes { get; set; }
 
     public virtual DbSet<TasSetupEmploymentStatus> TasSetupEmploymentStatuses { get; set; }
 
@@ -143,6 +147,337 @@ public partial class TalentAquisitionDbContext : DbContext
                 .HasForeignKey(d => d.TemplateFor)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_TAS_Setup_EmailTemplate_TAS_Setup_EmailTemplatesTypes");
+        });
+
+        modelBuilder.Entity<TasMainEmployee>(entity =>
+        {
+            entity.HasKey(e => e.EmployeeId).HasName("PK__tas_main__C134C9C13B6CDF2F");
+
+            entity.ToTable("tas_main_employee");
+
+            entity.Property(e => e.EmployeeId).HasColumnName("employeeId");
+            entity.Property(e => e.ActionItems)
+                .HasMaxLength(1000)
+                .IsUnicode(false)
+                .HasColumnName("actionItems");
+            entity.Property(e => e.AdditionalNotes)
+                .HasMaxLength(1000)
+                .IsUnicode(false)
+                .HasColumnName("additionalNotes");
+            entity.Property(e => e.AddressLine2)
+                .HasMaxLength(225)
+                .IsUnicode(false)
+                .HasColumnName("addressLine2");
+            entity.Property(e => e.AmountPerMonth)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("amountPerMonth");
+            entity.Property(e => e.AreTermsAcknowledged).HasColumnName("areTermsAcknowledged");
+            entity.Property(e => e.BonusTypeId).HasColumnName("bonusTypeId");
+            entity.Property(e => e.BranchId).HasColumnName("branchId");
+            entity.Property(e => e.CellPhone)
+                .HasMaxLength(225)
+                .IsUnicode(false)
+                .HasColumnName("cellPhone");
+            entity.Property(e => e.City)
+                .HasMaxLength(225)
+                .IsUnicode(false)
+                .HasColumnName("city");
+            entity.Property(e => e.City2)
+                .HasMaxLength(225)
+                .IsUnicode(false)
+                .HasColumnName("city2");
+            entity.Property(e => e.CompensationNotes1)
+                .HasMaxLength(1000)
+                .IsUnicode(false)
+                .HasColumnName("compensationNotes1");
+            entity.Property(e => e.CompensationNotes2)
+                .HasMaxLength(1000)
+                .IsUnicode(false)
+                .HasColumnName("compensationNotes2");
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
+                .HasColumnName("createdAt");
+            entity.Property(e => e.CreatedBy).HasColumnName("createdBy");
+            entity.Property(e => e.CurrentCompanyId).HasColumnName("currentCompanyId");
+            entity.Property(e => e.DepartmentId).HasColumnName("departmentId");
+            entity.Property(e => e.Email)
+                .HasMaxLength(225)
+                .IsUnicode(false)
+                .HasColumnName("email");
+            entity.Property(e => e.EmployeeTypeId).HasColumnName("employeeTypeId");
+            entity.Property(e => e.EmploymentStatusId).HasColumnName("employmentStatusId");
+            entity.Property(e => e.EstimatedStartDate)
+                .HasColumnType("datetime")
+                .HasColumnName("estimatedStartDate");
+            entity.Property(e => e.FirstName)
+                .HasMaxLength(225)
+                .IsUnicode(false)
+                .HasColumnName("firstName");
+            entity.Property(e => e.FullName)
+                .HasMaxLength(150)
+                .IsUnicode(false)
+                .HasColumnName("fullName");
+            entity.Property(e => e.Gifts)
+                .HasMaxLength(1000)
+                .IsUnicode(false)
+                .HasColumnName("gifts");
+            entity.Property(e => e.HasBonus).HasColumnName("hasBonus");
+            entity.Property(e => e.HasDockingStation).HasColumnName("hasDockingStation");
+            entity.Property(e => e.HasGuarantee).HasColumnName("hasGuarantee");
+            entity.Property(e => e.HasKeyboardMouse).HasColumnName("hasKeyboardMouse");
+            entity.Property(e => e.HasNmlsLicense).HasColumnName("hasNmlsLicense");
+            entity.Property(e => e.HasOtherAddress).HasColumnName("hasOtherAddress");
+            entity.Property(e => e.HasPreferredName).HasColumnName("hasPreferredName");
+            entity.Property(e => e.HasPreventions)
+                .HasMaxLength(1000)
+                .IsUnicode(false)
+                .HasColumnName("hasPreventions");
+            entity.Property(e => e.HasSignonBonus).HasColumnName("hasSignonBonus");
+            entity.Property(e => e.HierarchyId).HasColumnName("hierarchyId");
+            entity.Property(e => e.IsCompleted).HasColumnName("isCompleted");
+            entity.Property(e => e.IsDeleted).HasColumnName("isDeleted");
+            entity.Property(e => e.IsFaxToMail)
+                .HasMaxLength(1000)
+                .IsUnicode(false)
+                .HasColumnName("isFaxToMail");
+            entity.Property(e => e.IsFormerEmployee).HasColumnName("isFormerEmployee");
+            entity.Property(e => e.IsGreaterOfComp).HasColumnName("isGreaterOfComp");
+            entity.Property(e => e.IsInclusiveOfSalary).HasColumnName("isInclusiveOfSalary");
+            entity.Property(e => e.IsRealtorLicense).HasColumnName("isRealtorLicense");
+            entity.Property(e => e.IsRecoveryGuaranteed).HasColumnName("isRecoveryGuaranteed");
+            entity.Property(e => e.IsRehire).HasColumnName("isRehire");
+            entity.Property(e => e.IsRemote).HasColumnName("isRemote");
+            entity.Property(e => e.IsSalaryRecoverable).HasColumnName("isSalaryRecoverable");
+            entity.Property(e => e.IsSeasonalEmployee).HasColumnName("isSeasonalEmployee");
+            entity.Property(e => e.IsSignonBonusRecoverable).HasColumnName("isSignonBonusRecoverable");
+            entity.Property(e => e.IsTempAuthorityNeeded).HasColumnName("isTempAuthorityNeeded");
+            entity.Property(e => e.IsUnfollow).HasColumnName("isUnfollow");
+            entity.Property(e => e.JobTitleId).HasColumnName("jobTitleId");
+            entity.Property(e => e.LaptopId).HasColumnName("laptopId");
+            entity.Property(e => e.LastName)
+                .HasMaxLength(225)
+                .IsUnicode(false)
+                .HasColumnName("lastName");
+            entity.Property(e => e.LastTouch)
+                .HasColumnType("datetime")
+                .HasColumnName("lastTouch");
+            entity.Property(e => e.LeadSourceId).HasColumnName("leadSourceId");
+            entity.Property(e => e.LeadSourceNotes)
+                .HasMaxLength(1000)
+                .IsUnicode(false)
+                .HasColumnName("leadSourceNotes");
+            entity.Property(e => e.LendingFootprintId).HasColumnName("lendingFootprintId");
+            entity.Property(e => e.LicensedStates)
+                .HasMaxLength(1000)
+                .IsUnicode(false)
+                .HasColumnName("licensedStates");
+            entity.Property(e => e.LinkedIn)
+                .HasMaxLength(2500)
+                .IsUnicode(false)
+                .HasColumnName("linkedIn");
+            entity.Property(e => e.ManagerId).HasColumnName("managerId");
+            entity.Property(e => e.MaxTransaction)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("maxTransaction");
+            entity.Property(e => e.MinTransaction)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("minTransaction");
+            entity.Property(e => e.MonitorId).HasColumnName("monitorId");
+            entity.Property(e => e.Month)
+                .HasMaxLength(225)
+                .IsUnicode(false)
+                .HasColumnName("month");
+            entity.Property(e => e.NmlsFirstName)
+                .HasMaxLength(225)
+                .IsUnicode(false)
+                .HasColumnName("nmlsFirstName");
+            entity.Property(e => e.NmlsId)
+                .HasMaxLength(25)
+                .IsUnicode(false)
+                .HasColumnName("nmlsId");
+            entity.Property(e => e.NmlsLastName)
+                .HasMaxLength(225)
+                .IsUnicode(false)
+                .HasColumnName("nmlsLastName");
+            entity.Property(e => e.OtherAddress)
+                .HasMaxLength(1000)
+                .IsUnicode(false)
+                .HasColumnName("otherAddress");
+            entity.Property(e => e.Ownership)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("ownership");
+            entity.Property(e => e.PaymentDateId).HasColumnName("paymentDateId");
+            entity.Property(e => e.Picture)
+                .HasMaxLength(500)
+                .IsUnicode(false)
+                .HasColumnName("picture");
+            entity.Property(e => e.PreferredAreaCode)
+                .HasMaxLength(225)
+                .IsUnicode(false)
+                .HasColumnName("preferredAreaCode");
+            entity.Property(e => e.PreferredFirstName)
+                .HasMaxLength(225)
+                .IsUnicode(false)
+                .HasColumnName("preferredFirstName");
+            entity.Property(e => e.PreferredLastName)
+                .HasMaxLength(225)
+                .IsUnicode(false)
+                .HasColumnName("preferredLastName");
+            entity.Property(e => e.PricingDoc)
+                .HasMaxLength(500)
+                .IsUnicode(false)
+                .HasColumnName("pricingDoc");
+            entity.Property(e => e.ProformaDoc)
+                .HasMaxLength(500)
+                .IsUnicode(false)
+                .HasColumnName("proformaDoc");
+            entity.Property(e => e.RealStateCompany)
+                .HasMaxLength(1000)
+                .IsUnicode(false)
+                .HasColumnName("realStateCompany");
+            entity.Property(e => e.RecoverableTimeFrameId).HasColumnName("recoverableTimeFrameId");
+            entity.Property(e => e.Reference)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("reference");
+            entity.Property(e => e.ResidesInId).HasColumnName("residesInId");
+            entity.Property(e => e.Resume)
+                .HasMaxLength(500)
+                .IsUnicode(false)
+                .HasColumnName("resume");
+            entity.Property(e => e.RoleTypeId).HasColumnName("roleTypeId");
+            entity.Property(e => e.SalaryTypeId).HasColumnName("salaryTypeId");
+            entity.Property(e => e.ShippingAddressId).HasColumnName("shippingAddressId");
+            entity.Property(e => e.SignonBonusAmount)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("signonBonusAmount");
+            entity.Property(e => e.StateId).HasColumnName("stateId");
+            entity.Property(e => e.StateId2).HasColumnName("stateId2");
+            entity.Property(e => e.StatusId).HasColumnName("statusId");
+            entity.Property(e => e.StreetAddress)
+                .HasMaxLength(225)
+                .IsUnicode(false)
+                .HasColumnName("streetAddress");
+            entity.Property(e => e.StreetAddress2)
+                .HasMaxLength(225)
+                .IsUnicode(false)
+                .HasColumnName("streetAddress2");
+            entity.Property(e => e.TrackingDoc)
+                .HasMaxLength(500)
+                .IsUnicode(false)
+                .HasColumnName("trackingDoc");
+            entity.Property(e => e.TypeId).HasColumnName("typeId");
+            entity.Property(e => e.UniqueProductsRequest)
+                .HasMaxLength(1000)
+                .IsUnicode(false)
+                .HasColumnName("uniqueProductsRequest");
+            entity.Property(e => e.UpdatedAt)
+                .HasColumnType("datetime")
+                .HasColumnName("updatedAt");
+            entity.Property(e => e.UpdatedBy).HasColumnName("updatedBy");
+            entity.Property(e => e.Volume)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("volume");
+            entity.Property(e => e.WillActivelyContinue).HasColumnName("willActivelyContinue");
+            entity.Property(e => e.ZipCode)
+                .HasMaxLength(225)
+                .IsUnicode(false)
+                .HasColumnName("zipCode");
+            entity.Property(e => e.ZipCode2)
+                .HasMaxLength(225)
+                .IsUnicode(false)
+                .HasColumnName("zipCode2");
+            entity.Property(e => e.ZoomOptionId).HasColumnName("zoomOptionId");
+
+            entity.HasOne(d => d.BonusType).WithMany(p => p.TasMainEmployees)
+                .HasForeignKey(d => d.BonusTypeId)
+                .HasConstraintName("FK_Employee_Bonus_Type");
+
+            entity.HasOne(d => d.Branch).WithMany(p => p.TasMainEmployees)
+                .HasForeignKey(d => d.BranchId)
+                .HasConstraintName("FK_Employee_Branch");
+
+            entity.HasOne(d => d.CurrentCompany).WithMany(p => p.TasMainEmployees)
+                .HasForeignKey(d => d.CurrentCompanyId)
+                .HasConstraintName("FK_Employee_Current_Company");
+
+            entity.HasOne(d => d.Department).WithMany(p => p.TasMainEmployees)
+                .HasForeignKey(d => d.DepartmentId)
+                .HasConstraintName("FK_Employee_Department");
+
+            entity.HasOne(d => d.EmployeeType).WithMany(p => p.TasMainEmployees)
+                .HasForeignKey(d => d.EmployeeTypeId)
+                .HasConstraintName("FK_Employee_Employee_Type");
+
+            entity.HasOne(d => d.EmploymentStatus).WithMany(p => p.TasMainEmployees)
+                .HasForeignKey(d => d.EmploymentStatusId)
+                .HasConstraintName("FK_Employee_Employment_Status");
+
+            entity.HasOne(d => d.Hierarchy).WithMany(p => p.TasMainEmployees)
+                .HasForeignKey(d => d.HierarchyId)
+                .HasConstraintName("FK_Employee_Hierarchy");
+
+            entity.HasOne(d => d.JobTitle).WithMany(p => p.TasMainEmployees)
+                .HasForeignKey(d => d.JobTitleId)
+                .HasConstraintName("FK_Employee_Job_Title");
+
+            entity.HasOne(d => d.Laptop).WithMany(p => p.TasMainEmployees)
+                .HasForeignKey(d => d.LaptopId)
+                .HasConstraintName("FK_Employee_Laptop");
+
+            entity.HasOne(d => d.LeadSource).WithMany(p => p.TasMainEmployees)
+                .HasForeignKey(d => d.LeadSourceId)
+                .HasConstraintName("FK_Employee_Lead_Source");
+
+            entity.HasOne(d => d.Manager).WithMany(p => p.TasMainEmployees)
+                .HasForeignKey(d => d.ManagerId)
+                .HasConstraintName("FK_Employee_Manager");
+
+            entity.HasOne(d => d.Monitor).WithMany(p => p.TasMainEmployees)
+                .HasForeignKey(d => d.MonitorId)
+                .HasConstraintName("FK_Employee_Monitor");
+
+            entity.HasOne(d => d.PaymentDate).WithMany(p => p.TasMainEmployees)
+                .HasForeignKey(d => d.PaymentDateId)
+                .HasConstraintName("FK_Employee_Payment_Date");
+
+            entity.HasOne(d => d.RecoverableTimeFrame).WithMany(p => p.TasMainEmployees)
+                .HasForeignKey(d => d.RecoverableTimeFrameId)
+                .HasConstraintName("FK_Employee_Recoverable_Timeframe");
+
+            entity.HasOne(d => d.ResidesIn).WithMany(p => p.TasMainEmployeeResidesIns)
+                .HasForeignKey(d => d.ResidesInId)
+                .HasConstraintName("FK_Employee_Resides_In");
+
+            entity.HasOne(d => d.SalaryType).WithMany(p => p.TasMainEmployees)
+                .HasForeignKey(d => d.SalaryTypeId)
+                .HasConstraintName("FK_Employee_Salary_Type");
+
+            entity.HasOne(d => d.ShippingAddress).WithMany(p => p.TasMainEmployees)
+                .HasForeignKey(d => d.ShippingAddressId)
+                .HasConstraintName("FK_Employee_Ship_Address");
+
+            entity.HasOne(d => d.State).WithMany(p => p.TasMainEmployeeStates)
+                .HasForeignKey(d => d.StateId)
+                .HasConstraintName("FK_Employee_State");
+
+            entity.HasOne(d => d.StateId2Navigation).WithMany(p => p.TasMainEmployeeStateId2Navigations)
+                .HasForeignKey(d => d.StateId2)
+                .HasConstraintName("FK_Employee_State_2");
+
+            entity.HasOne(d => d.Status).WithMany(p => p.TasMainEmployees)
+                .HasForeignKey(d => d.StatusId)
+                .HasConstraintName("FK_Employee_Status");
+
+            entity.HasOne(d => d.Type).WithMany(p => p.TasMainEmployees)
+                .HasForeignKey(d => d.TypeId)
+                .HasConstraintName("FK_Employee_Type");
+
+            entity.HasOne(d => d.ZoomOption).WithMany(p => p.TasMainEmployees)
+                .HasForeignKey(d => d.ZoomOptionId)
+                .HasConstraintName("FK_Employee_Zoom_Options");
         });
 
         modelBuilder.Entity<TasMainField>(entity =>
@@ -556,6 +891,28 @@ public partial class TalentAquisitionDbContext : DbContext
             entity.ToTable("tas_setup_department");
 
             entity.Property(e => e.DepartmentId).HasColumnName("departmentId");
+            entity.Property(e => e.CreatedAt)
+                .HasColumnType("datetime")
+                .HasColumnName("createdAt");
+            entity.Property(e => e.CreatedBy).HasColumnName("createdBy");
+            entity.Property(e => e.IsDeleted).HasColumnName("isDeleted");
+            entity.Property(e => e.Name)
+                .HasMaxLength(225)
+                .IsUnicode(false)
+                .HasColumnName("name");
+            entity.Property(e => e.UpdatedAt)
+                .HasColumnType("datetime")
+                .HasColumnName("updatedAt");
+            entity.Property(e => e.UpdatedBy).HasColumnName("updatedBy");
+        });
+
+        modelBuilder.Entity<TasSetupEmployeeType>(entity =>
+        {
+            entity.HasKey(e => e.EmployeeTypeId).HasName("PK__tas_setu__28A843A40A52DAA7");
+
+            entity.ToTable("tas_setup_employee_type");
+
+            entity.Property(e => e.EmployeeTypeId).HasColumnName("employeeTypeId");
             entity.Property(e => e.CreatedAt)
                 .HasColumnType("datetime")
                 .HasColumnName("createdAt");
