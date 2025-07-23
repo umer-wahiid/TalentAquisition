@@ -106,11 +106,18 @@ var tas_setupStatus = {
     },
 
     handleDeleteClick: function (statusId) {
-        if (confirm('Are you sure you want to delete this status?')) {
+        DevExpress.ui.dialog.confirm(
+            `Are you sure you want to delete this record?`,
+            "Confirm Delete"
+        ).done(function (dialogResult) {
+            if (!dialogResult) {
+                return;
+            }
+
             tas_ajaxHelper.delete(`/SetupStatus/Delete/${statusId}`, () => {
-                this.initializeGrid();
+                tas_setupStatus.initializeGrid();
             });
-        }
+        });
     }
 };
 

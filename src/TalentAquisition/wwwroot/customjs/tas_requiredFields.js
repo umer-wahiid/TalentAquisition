@@ -54,7 +54,7 @@ var tas_requiredFields = {
                 },
                 {
                     dataField: "description",
-                    caption: "Description",
+                    caption: "Description"
                 },
                 {
                     dataField: "requiredInEmployee",
@@ -62,16 +62,11 @@ var tas_requiredFields = {
                     width: 160,
                     dataType: "boolean",
                     cellTemplate: function (container, options) {
-                        const isChecked = options.data.milestoneId > 0;
                         $('<div>').dxCheckBox({
-                            value: isChecked,
+                            value: options.data.milestoneId > 0,
                             onValueChanged: function (e) {
-                                const data = options.data;
-                                if (e.value) {
-                                    data.milestoneId = data.tabId;
-                                } else {
-                                    data.milestoneId = 0;
-                                }
+                                var data = options.data;
+                                data.milestoneId = e.value ? data.tabId : 0;
                                 tas_requiredFields.allFieldsGrid.getDataSource().store().update(data.fieldId, data);
                             }
                         }).appendTo(container);
@@ -83,16 +78,11 @@ var tas_requiredFields = {
                     width: 160,
                     dataType: "boolean",
                     cellTemplate: function (container, options) {
-                        const isChecked = options.data.milestoneIdBranch > 0;
                         $('<div>').dxCheckBox({
-                            value: isChecked,
+                            value: options.data.milestoneIdBranch > 0,
                             onValueChanged: function (e) {
-                                const data = options.data;
-                                if (e.value) {
-                                    data.milestoneIdBranch = data.tabId;
-                                } else {
-                                    data.milestoneIdBranch = 0;
-                                }
+                                var data = options.data;
+                                data.milestoneIdBranch = e.value ? data.tabId : 0;
                                 tas_requiredFields.allFieldsGrid.getDataSource().store().update(data.fieldId, data);
                             }
                         }).appendTo(container);
@@ -100,15 +90,16 @@ var tas_requiredFields = {
                 },
                 {
                     dataField: "milestoneId",
-                    caption: "Milestone Id",
                     visible: false
                 },
                 {
                     dataField: "milestoneIdBranch",
-                    caption: "Milestone Id Branch",
                     visible: false
                 }
             ],
+            filterRow: {
+                visible: true
+            },
             searchPanel: {
                 visible: true,
                 width: 240,

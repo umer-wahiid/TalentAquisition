@@ -1,11 +1,13 @@
-﻿namespace TalentAquisition.Core.IServices
+﻿using TalentAquisition.Core.Dtos;
+
+namespace TalentAquisition.Core.IServices
 {
     public interface IService<T> where T : class
     {
-        Task<IEnumerable<T>> GetAllAsync();
-        Task<T> GetByIdAsync(int id);
-        Task AddAsync(T entity);
-        Task UpdateAsync(T entity);
-        Task DeleteAsync(int id);
+        Task<Response<IEnumerable<T>>> GetAllAsync();
+        Task<Response<T>> GetByIdAsync(int id);
+        Task<Response<int>> AddAsync(T entity);
+        Task<Response<bool>> UpdateAsync(T entity);
+        Task<Response<bool>> DeleteAsync(int id);
     }
 }

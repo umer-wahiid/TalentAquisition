@@ -369,8 +369,7 @@ body {
     --bs-gutter-x: 30px; }
   .main-panel .page-header {
     display: flex;
-    align-items: center;
-    margin-bottom: 20px; }
+    align-items: center; }
     .main-panel .page-header .page-title {
       margin-bottom: 0px; }
     .main-panel .page-header .btn-page-header-dropdown {

@@ -15,15 +15,22 @@ namespace TalentAquisition.Infrastructure.Repositories
             _context = context;
         }
 
-        public async Task AddAsync(SetupStatusDto dto)
+        public async Task<Response<int>> AddAsync(SetupStatusDto dto)
         {
-            var entity = dto.ToEntity();
-            await _context.TasSetupStatuses.AddAsync(entity);
-            await _context.SaveChangesAsync();
-            dto.StatusId = entity.StatusId;
+            try
+            {
+                var entity = dto.ToEntity();
+                await _context.TasSetupStatuses.AddAsync(entity);
+                await _context.SaveChangesAsync();
+                return Response<int>.SuccessResult(entity.StatusId, "Status created successfully");
+            }
+            catch (Exception ex)
+            {
+                return Response<int>.FailureResult("Failed to create status", ex);
+            }
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task<Response<bool>> DeleteAsync(int id)
         {
             var entity = await _context.TasSetupStatuses.FindAsync(id);
             if (entity != null)
@@ -31,32 +38,67 @@ namespace TalentAquisition.Infrastructure.Repositories
                 entity.IsDeleted = true;
                 entity.UpdatedAt = DateTime.UtcNow;
                 await _context.SaveChangesAsync();
+                return Response<bool>.SuccessResult(true, "Status deleted successfully");
+            }
+            else
+            {
+                return Response<bool>.SuccessResult(false, "Status not found");
             }
         }
 
-        public async Task<IEnumerable<SetupStatusDto>> GetAllAsync()
+        public async Task<Response<IEnumerable<SetupStatusDto>>> GetAllAsync()
         {
-            return await _context.TasSetupStatuses
-                .Where(s => !(s.IsDeleted ?? false))
-                .Select(s => s.ToDto())
-                .AsNoTracking()
-                .ToListAsync();
-        }
-
-        public async Task<SetupStatusDto> GetByIdAsync(int id)
-        {
-            var entity = await _context.TasSetupStatuses.FindAsync(id);
-            return entity?.ToDto();
-        }
-
-        public async Task UpdateAsync(SetupStatusDto dto)
-        {
-            var entity = await _context.TasSetupStatuses.FindAsync(dto.StatusId);
-            if (entity != null)
+            try
             {
+                var statuses = await _context.TasSetupStatuses
+                    .Where(s => !(s.IsDeleted ?? false))
+                    .Select(s => s.ToDto())
+                    .AsNoTracking()
+                    .ToListAsync();
+
+                return Response<IEnumerable<SetupStatusDto>>.SuccessResult(statuses, "");
+            }
+            catch (Exception ex)
+            {
+                return Response<IEnumerable<SetupStatusDto>>.FailureResult(
+                    "An error occurred while retrieving statuses",
+                    ex);
+            }
+        }
+
+        public async Task<Response<SetupStatusDto>> GetByIdAsync(int id)
+        {
+            try
+            {
+                var entity = await _context.TasSetupStatuses.FindAsync(id);
+                if (entity == null || entity.IsDeleted == true)
+                    return Response<SetupStatusDto>.FailureResult("Status not found");
+
+                return Response<SetupStatusDto>.SuccessResult(entity.ToDto());
+            }
+            catch (Exception ex)
+            {
+                return Response<SetupStatusDto>.FailureResult("Database error", ex);
+            }
+        }
+
+        public async Task<Response<bool>> UpdateAsync(SetupStatusDto dto)
+        {
+            try
+            {
+                var entity = await _context.TasSetupStatuses.FindAsync(dto.StatusId);
+                if (entity == null)
+                    return Response<bool>.FailureResult("Status not found");
+
                 entity.Name = dto.Name;
                 entity.UpdatedAt = DateTime.UtcNow;
                 await _context.SaveChangesAsync();
+
+                return Response<bool>.SuccessResult(true, "Status updated successfully");
+            }
+            catch (Exception ex)
+            {
+                return Response<bool>.FailureResult("Failed to update status", ex);
             }
         }
     }

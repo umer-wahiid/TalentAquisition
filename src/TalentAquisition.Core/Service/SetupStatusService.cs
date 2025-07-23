@@ -12,29 +12,29 @@ namespace TalentAquisition.Infrastructure.Repositories
             _setupStatusRepository = setupStatusRepository;
         }
 
-        public async Task AddAsync(SetupStatusDto dto)
+        public async Task<Response<int>> AddAsync(SetupStatusDto dto)
         {
-            await _setupStatusRepository.AddAsync(dto);
+            return await _setupStatusRepository.AddAsync(dto);
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task<Response<bool>> DeleteAsync(int id)
         {
-            await _setupStatusRepository.DeleteAsync(id);
+            return await _setupStatusRepository.DeleteAsync(id);
         }
 
-        public async Task<IEnumerable<SetupStatusDto>> GetAllAsync()
+        public async Task<Response<IEnumerable<SetupStatusDto>>> GetAllAsync()
         {
             return await _setupStatusRepository.GetAllAsync();
         }
 
-        public async Task<SetupStatusDto> GetByIdAsync(int id)
+        public async Task<Response<SetupStatusDto>> GetByIdAsync(int id)
         {
             return await _setupStatusRepository.GetByIdAsync(id);
         }
 
-        public async Task UpdateAsync(SetupStatusDto dto)
+        public async Task<Response<bool>> UpdateAsync(SetupStatusDto dto)
         {
-            await _setupStatusRepository.UpdateAsync(dto);
+            return await _setupStatusRepository.UpdateAsync(dto);
         }
     }
 }

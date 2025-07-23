@@ -23,8 +23,8 @@ namespace TalentAquisition.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var statuses = await _service.GetAllAsync();
-            return Json(JsonResponse.Success(statuses));
+            var respone = await _service.GetAllAsync();
+            return Json(respone);
         }
 
         [HttpDelete]
@@ -32,8 +32,8 @@ namespace TalentAquisition.Controllers
         {
             try
             {
-                await _service.DeleteAsync(id);
-                return Json(JsonResponse.Success(message: "Status deleted successfully"));
+                var respone = await _service.DeleteAsync(id);
+                return Json(respone);
             }
             catch (Exception ex)
             {
@@ -44,16 +44,8 @@ namespace TalentAquisition.Controllers
         [HttpGet]
         public async Task<IActionResult> GetById(int id)
         {
-            var status = await _service.GetByIdAsync(id);
-            if (status == null)
-            {
-                return NotFound();
-            }
-            return Json(new
-            {
-                success = true,
-                data = status
-            });
+            var response = await _service.GetByIdAsync(id);
+            return Json(response);
         }
 
         [HttpPost]
@@ -68,8 +60,8 @@ namespace TalentAquisition.Controllers
                 return Json(JsonResponse.Error("Validation failed", errors));
             }
 
-            await _service.AddAsync(status);
-            return Json(JsonResponse.Success(status, "Status created successfully"));
+            var response = await _service.AddAsync(status);
+            return Json(response);
         }
 
         [HttpPut]
@@ -84,8 +76,8 @@ namespace TalentAquisition.Controllers
                 return Json(JsonResponse.Error("Validation failed", errors));
             }
 
-            await _service.UpdateAsync(status);
-            return Json(JsonResponse.Success(status, "Status updated successfully"));
+            var response = await _service.UpdateAsync(status);
+            return Json(response);
         }
     }
 }
