@@ -1,4 +1,4 @@
-﻿using TalentAquisition.Core.DTOs;
+﻿using TalentAquisition.Core.Dtos;
 using TalentAquisition.Infrastructure.Entities;
 
 namespace TalentAquisition.Infrastructure.Extensions.Mappings

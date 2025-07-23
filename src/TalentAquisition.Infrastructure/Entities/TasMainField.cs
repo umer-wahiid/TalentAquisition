@@ -18,4 +18,8 @@ public partial class TasMainField
     public string? DataType { get; set; }
 
     public bool IsDeleted { get; set; }
+
+    public int? TabId { get; set; }
+
+    public int? MilestoneIdBranch { get; set; }
 }

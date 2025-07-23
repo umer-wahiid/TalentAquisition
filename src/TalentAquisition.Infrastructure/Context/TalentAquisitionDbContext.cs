@@ -88,7 +88,7 @@ public partial class TalentAquisitionDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-LMV5DEC;Integrated Security=true; Initial Catalog=TalentAquisition; Encrypt=False");
+        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-LMV5DEC;Integrated Security=true;Initial Catalog=TalentAquisition;Encrypt=False");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -170,6 +170,8 @@ public partial class TalentAquisitionDbContext : DbContext
                 .HasColumnName("fieldName");
             entity.Property(e => e.IsDeleted).HasColumnName("isDeleted");
             entity.Property(e => e.MilestoneId).HasColumnName("milestoneId");
+            entity.Property(e => e.MilestoneIdBranch).HasColumnName("milestoneIdBranch");
+            entity.Property(e => e.TabId).HasColumnName("tabId");
         });
 
         modelBuilder.Entity<TasMainLeadCompensation>(entity =>

@@ -1,4 +1,4 @@
-﻿using TalentAquisition.Core.DTOs;
+﻿using TalentAquisition.Core.Dtos;
 
 namespace TalentAquisition.Core.IRepositories
 {

@@ -59,16 +59,12 @@ var tas_setupStatus = {
     },
 
     bindEvents: function () {
-        // Create button click
         $('[data-bs-target="#upsertModal"]').click(this.showCreateModal.bind(this));
 
-        // Edit button click
         $('#statusTable').on('click', '.edit-btn', this.handleEditClick.bind(this));
 
-        // Save button click
         $('#saveBtn').click(this.handleSaveClick.bind(this));
 
-        // Delete button click
         $('#statusTable').on('click', '.delete-btn', this.handleDeleteClick.bind(this));
     },
 

@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TalentAquisition.Core.DTOs;
+using TalentAquisition.Core.Dtos;
 using TalentAquisition.Core.IServices;
 using TalentAquisition.Models;
 

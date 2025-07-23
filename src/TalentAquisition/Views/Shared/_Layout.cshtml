@@ -46,6 +46,60 @@
     <link rel="stylesheet" href="~/assets/css/kaiadmin.min.css" />
 </head>
 <body>
+   @*  <style>
+
+        tr.dx-row.dx-header-row {
+            background-color: #002f34 !important;
+            font-weight: bold !important;
+        }
+
+        .dx-master-detail-cell tr.dx-row.dx-header-row {
+            font-size: 8px;
+        }
+
+        .loginfooter ul li a:hover {
+            color: #002f34;
+        }
+
+        .dx-datagrid td {
+            color: #000000;
+            font-weight: 500;
+        }
+
+        i.dx-icon {
+            color: #000000;
+            font-weight: bold;
+        }
+
+        .dx-icon.dx-icon-search {
+            color: #000000;
+            font-weight: bold;
+            top: 11px;
+        }
+
+        tr.dx-row.dx-header-row > td {
+            color: #fff;
+        }
+
+        .dx-treelist .dx-column-lines > td {
+            color: #000000;
+            font-weight: 600;
+        }
+
+        .dx-dropdownlist-popup-wrapper .dx-list:not(.dx-list-select-decorator-enabled) .dx-list-item-content {
+            color: #000000;
+            font-weight: 500;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .dx-dropdownlist-popup-wrapper .dx-list:not(.dx-list-select-decorator-enabled) .dx-state-focused .dx-list-item-content {
+            color: white !important;
+        }
+
+        .dx-list:not(.dx-list-select-decorator-enabled) .dx-list-item.dx-state-hover {
+            background-color: #ededf1;
+        }
+    </style> *@
     <div class="wrapper">
         <!-- Sidebar -->
         <div class="sidebar" data-background-color="dark">
@@ -99,6 +153,11 @@
                                     <li>
                                         <a asp-action="Index" asp-controller="SetupStatus">
                                             <span class="sub-item">Status</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a asp-action="Index" asp-controller="RequiredFields">
+                                            <span class="sub-item">Set Required Fields</span>
                                         </a>
                                     </li>
                                 </ul>

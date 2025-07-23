@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TalentAquisition.Core.DTOs;
+using TalentAquisition.Core.Dtos;
 using TalentAquisition.Core.IRepositories;
 using TalentAquisition.Infrastructure.Context;
 using TalentAquisition.Infrastructure.Extensions.Mappings;
@@ -39,6 +39,7 @@ namespace TalentAquisition.Infrastructure.Repositories
             return await _context.TasSetupStatuses
                 .Where(s => !(s.IsDeleted ?? false))
                 .Select(s => s.ToDto())
+                .AsNoTracking()
                 .ToListAsync();
         }
 

@@ -18,9 +18,13 @@ namespace TalentAquisition.Infrastructure.Extensions
 
             // Register repositories
             services.AddScoped<ISetupStatusRepository, SetupStatusRepository>();
+            services.AddScoped<IMainFieldRepository, MainFieldRepository>();
+            services.AddScoped<IDropdownRepository, DropdownRepository>();
 
             // Add other infrastructure services here
             services.AddScoped<ISetupStatusService, SetupStatusService>();
+            services.AddScoped<IMainFieldService, MainFieldService>();
+            services.AddScoped<IDropdownService, DropdownService>();
 
             return services;
         }

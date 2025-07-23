@@ -1,4 +1,4 @@
-﻿using TalentAquisition.Core.DTOs;
+﻿using TalentAquisition.Core.Dtos;
 using TalentAquisition.Core.IServices;
 using TalentAquisition.Core.IRepositories;
 
@@ -12,9 +12,9 @@ namespace TalentAquisition.Infrastructure.Repositories
             _setupStatusRepository = setupStatusRepository;
         }
 
-        public async Task AddAsync(SetupStatusDto entity)
+        public async Task AddAsync(SetupStatusDto dto)
         {
-            await _setupStatusRepository.AddAsync(entity);
+            await _setupStatusRepository.AddAsync(dto);
         }
 
         public async Task DeleteAsync(int id)
@@ -32,9 +32,9 @@ namespace TalentAquisition.Infrastructure.Repositories
             return await _setupStatusRepository.GetByIdAsync(id);
         }
 
-        public async Task UpdateAsync(SetupStatusDto entity)
+        public async Task UpdateAsync(SetupStatusDto dto)
         {
-            await _setupStatusRepository.UpdateAsync(entity);
+            await _setupStatusRepository.UpdateAsync(dto);
         }
     }
 }

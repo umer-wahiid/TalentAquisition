@@ -22,7 +22,8 @@ namespace TalentAquisition.Infrastructure.Repositories
                 .Select(s => new DropdownDto
                 {
                     Value = s.MilestoneId,
-                    Text = s.MilestoneName
+                    Text = s.MilestoneName,
+                    Group = ""
                 })
                 .ToListAsync();
         }

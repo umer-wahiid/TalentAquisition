@@ -1,4 +1,4 @@
-﻿namespace TalentAquisition.Core.DTOs
+﻿namespace TalentAquisition.Core.Dtos
 {
     public class SetupStatusDto
     {
