@@ -4,7 +4,7 @@ namespace TalentAquisition.Core.IServices
 {
     public interface IMainFieldService
     {
-        Task<List<MainFieldDto>> GetAllAsync();
-        Task UpdateAsync(List<MainFieldDto> Dto);
+        Task<Response<IEnumerable<MainFieldDto>>> GetAllAsync();
+        Task<Response<bool>> UpdateAsync(List<MainFieldDto> dto);
     }
 }

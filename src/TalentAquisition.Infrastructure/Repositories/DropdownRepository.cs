@@ -2,7 +2,6 @@
 using TalentAquisition.Core.Dtos;
 using TalentAquisition.Core.IRepositories;
 using TalentAquisition.Infrastructure.Context;
-using TalentAquisition.Infrastructure.Extensions.Mappings;
 
 namespace TalentAquisition.Infrastructure.Repositories
 {
@@ -22,8 +21,7 @@ namespace TalentAquisition.Infrastructure.Repositories
                 .Select(s => new DropdownDto
                 {
                     Value = s.MilestoneId,
-                    Text = s.MilestoneName,
-                    Group = ""
+                    Text = s.MilestoneName
                 })
                 .ToListAsync();
         }

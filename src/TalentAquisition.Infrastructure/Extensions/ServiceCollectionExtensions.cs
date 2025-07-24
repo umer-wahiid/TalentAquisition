@@ -15,14 +15,16 @@ namespace TalentAquisition.Infrastructure.Extensions
             services.AddDbContext<TalentAquisitionDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddScoped<ISetupStatusRepository, SetupStatusRepository>();
-            services.AddScoped<IMainFieldRepository, MainFieldRepository>();
-            services.AddScoped<IMainEmployeeRepository, MainEmployeeRepository>();
-            services.AddScoped<IDropdownRepository, DropdownRepository>();
-
             services.AddScoped<ISetupStatusService, SetupStatusService>();
+            services.AddScoped<ISetupStatusRepository, SetupStatusRepository>();
+
             services.AddScoped<IMainFieldService, MainFieldService>();
+            services.AddScoped<IMainFieldRepository, MainFieldRepository>();
+            
             services.AddScoped<IMainEmployeeService, MainEmployeeService>();
+            services.AddScoped<IMainEmployeeRepository, MainEmployeeRepository>();
+            
+            services.AddScoped<IDropdownRepository, DropdownRepository>();
             services.AddScoped<IDropdownService, DropdownService>();
 
             return services;

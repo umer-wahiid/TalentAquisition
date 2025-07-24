@@ -22,7 +22,7 @@ var tas_requiredFields = {
     },
 
     bindEvents: function () {
-        $('#reset').on('click', '.edit-btn', tas_requiredFields.handleResetClick.bind(this));
+        $('#reset').click(tas_requiredFields.handleResetClick.bind(this));
 
         $('#save').click(tas_requiredFields.handleSaveClick.bind(this));
     },
@@ -199,7 +199,8 @@ var tas_requiredFields = {
 
             errorMessage += "\n\nEach milestone must have at least one Employee and one Branch required field.";
 
-            DevExpress.ui.notify(errorMessage, "error", 7000);
+            tas_helper.notify(errorMessage, 2);
+
             return;
         } else {
 
@@ -222,11 +223,11 @@ var tas_requiredFields = {
                 contentType: 'application/json',
                 data: JSON.stringify(field),
                 success: function (response) {
-                    DevExpress.ui.notify("Fields saved successfully", "success", 2000);
+                    tas_helper.notify("Fields saved successfully", 1);
                     tas_requiredFields.getAll();
                 },
                 error: function (xhr, status, error) {
-                    DevExpress.ui.notify("Error saving fields: " + error, "error", 2000);
+                    tas_helper.notify("Error saving fields: " + error, 2);
                 }
             });
         }
@@ -265,11 +266,7 @@ var tas_requiredFields = {
             tas_requiredFields.allFieldsGrid.option("dataSource", filteredData);
             tas_requiredFields.allFieldsGrid.refresh();
 
-            DevExpress.ui.notify(
-                `Reset all fields for milestone ${tas_requiredFields.selectedMilestoneName}`,
-                "success",
-                2000
-            );
+            tas_helper.notify(`Reset all fields for milestone ${tas_requiredFields.selectedMilestoneName}`, 1);
         });
     },
 };

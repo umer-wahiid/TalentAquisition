@@ -25,7 +25,6 @@ namespace TalentAquisition.Infrastructure.Repositories
                     var result = await conn.QueryAsync("EXEC dbo.Get_ProspectiveEmployeesList 2");
                     return Response<IEnumerable<dynamic>>.SuccessResult(result);
                 }
-
             }
             catch (Exception ex)
             {

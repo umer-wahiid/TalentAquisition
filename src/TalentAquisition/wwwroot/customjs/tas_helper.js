@@ -1,34 +1,35 @@
 ﻿var tas_helper = {
-    
+
     notify: function (msg, type) {
         //https://www.jqueryscript.net/other/Highly-Customizable-jQuery-Toast-Message-Plugin-Toastr.html
         if (type == 1) {
             toastr.success(msg, 'Success');
-
-        }if (type == 2) {
+        }
+        if (type == 2) {
             toastr.error(msg, 'Error');
-
-        }if (type == 3) {
+        }
+        if (type == 3) {
             toastr.warning(msg, 'Warning');
-        }if (type == 4) {
+        }
+        if (type == 4) {
             toastr.info(msg, 'Info');
         }
     },
-    
+
     isEmail: function (emailAdress) {
 
-        
-            let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-            if (emailAdress.match(regex))
-                return true;
+        let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-            else
-                return false;
-        
+        if (emailAdress.match(regex))
+            return true;
+
+        else
+            return false;
+
 
     },
-    
+
     dxGridbinding: function (div, columns, datasrc, fileName, selectionMode) {
         const columnChooserModes = [{
             "key": 'dragAndDrop',
@@ -36,7 +37,7 @@
         }, {
             "key": 'select',
             "name": 'Select',
-            }];
+        }];
         var mode = "single";
         if (selectionMode != '' && selectionMode != null && selectionMode != undefined) {
             mode = selectionMode;

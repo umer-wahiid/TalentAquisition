@@ -12,14 +12,14 @@ namespace TalentAquisition.Infrastructure.Repositories
             _mainFieldRepository = mainFieldRepository;
         }
 
-        public async Task<List<MainFieldDto>> GetAllAsync()
+        public async Task<Response<IEnumerable<MainFieldDto>>> GetAllAsync()
         {
             return await _mainFieldRepository.GetAllAsync();
         }
 
-        public async Task UpdateAsync(List<MainFieldDto> dto)
+        public async Task<Response<bool>> UpdateAsync(List<MainFieldDto> dto)
         {
-            await _mainFieldRepository.UpdateAsync(dto);
+            return await _mainFieldRepository.UpdateAsync(dto);
         }
     }
 }

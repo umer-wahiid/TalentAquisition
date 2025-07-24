@@ -4,7 +4,7 @@ namespace TalentAquisition.Core.IRepositories
 {
     public interface IMainFieldRepository
     {
-        Task<List<MainFieldDto>> GetAllAsync();
-        Task UpdateAsync(List<MainFieldDto> Dto);
+        Task<Response<IEnumerable<MainFieldDto>>> GetAllAsync();
+        Task<Response<bool>> UpdateAsync(List<MainFieldDto> dto);
     }
 }

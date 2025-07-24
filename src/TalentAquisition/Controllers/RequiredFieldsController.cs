@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using TalentAquisition.Core.Dtos;
 using TalentAquisition.Core.IServices;
 using TalentAquisition.Models;
@@ -27,8 +26,8 @@ namespace TalentAquisition.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var fieldes = await _service.GetAllAsync();
-            return Json(JsonResponse.Success(fieldes));
+            var response = await _service.GetAllAsync();
+            return Json(response);
         }
 
             [HttpPost]
@@ -43,8 +42,8 @@ namespace TalentAquisition.Controllers
                     return Json(JsonResponse.Error("Validation failed", errors));
                 }
 
-                await _service.UpdateAsync(field);
-                return Json(JsonResponse.Success(field, "Status updated successfully"));
+                var response = await _service.UpdateAsync(field);
+                return Json(response);
             }
     }
 }

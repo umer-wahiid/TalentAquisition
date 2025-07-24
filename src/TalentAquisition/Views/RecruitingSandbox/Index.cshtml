@@ -1,4 +1,316 @@
-﻿<div class="page-inner">
+﻿<style>
+    /* Popover */
+    .popover {
+        border: 1px solid #dcdcdc;
+        position: fixed;
+    }
+
+    /* Popover Header */
+    .popover-title, .dx-theme-generic-typography h3 {
+        background-color: #f2f2f2;
+        color: #333;
+        font-size: 12px !important;
+        text-align: left;
+        padding: 5px 12px 5px;
+        text-transform: none;
+    }
+
+    /* Popover Body */
+    .popover-content {
+        background-color: #fff;
+        color: #333;
+        padding: 10px 12px;
+    }
+
+    /* Popover Arrow */
+    .arrow {
+        border-right-color: black !important;
+    }
+
+    .img-container {
+        position: relative;
+    }
+
+    .dx-datagrid-content table tr td:nth-child(2) {
+        overflow: inherit;
+    }
+
+    .img-container .dropdown-menu {
+        min-width: 50px;
+    }
+
+        .img-container .dropdown-menu a {
+            display: flex;
+            padding: 10px;
+            color: #616161;
+            text-decoration: none;
+            align-items: center;
+        }
+
+            .img-container .dropdown-menu a i {
+                margin-right: 10px;
+            }
+
+    /*    .dx-toolbar-items-container {
+                display: none;
+            }*/
+
+    .dx-datagrid-table.dx-datagrid-table-fixed:has(> tbody > tr:nth-child(7)) tr:nth-last-child(2) td:nth-child(2) .dropdown-menu,
+    .dx-datagrid-table.dx-datagrid-table-fixed:has(> tbody > tr:nth-child(7)) tr:nth-last-child(3) td:nth-child(2) .dropdown-menu,
+    .dx-datagrid-table.dx-datagrid-table-fixed:has(> tbody > tr:nth-child(7)) tr:nth-last-child(4) td:nth-child(2) .dropdown-menu {
+        top: inherit !important;
+        Bottom: 100% !important;
+    }
+
+    .img-container .dropdown-menu {
+        position: absolute; /* Not absolute */
+        /*top: auto !important;
+                left: auto !important;
+                z-index: 9999 !important;*/
+    }
+
+    .dx-datagrid .dx-column-lines > td:last-child {
+        text-align: left !important;
+    }
+
+    .dx-datagrid .dx-column-lines > td:nth-child(4) {
+        text-align: left !important;
+    }
+
+    .dx-datagrid .dx-column-lines > td:nth-child(9) {
+        text-align: right !important;
+    }
+
+    .dx-scrollable-wrapper, .dx-scrollable-container {
+        /*min-height: 300px;*/
+    }
+
+    .form > .dx-fieldset > .dx-field {
+        overflow: inherit;
+    }
+
+    #resetFilters {
+        height: 26.48px;
+        padding: 1px 12px;
+        font-size: 8px;
+    }
+
+    .dropdown-open .dx-scrollable-native.dx-scrollable-both, .dropdown-open .dx-scrollable-native.dx-scrollable-both .dx-scrollable-container {
+        overflow: inherit !important;
+    }
+
+    .dropdown-open div#dvGrid {
+        overflow: inherit !important;
+        height: auto !important;
+        min-height: calc(100vh - 260px);
+    }
+
+    .btn.BtnViewDropdown {
+        display: inline-block;
+        padding: 3px 9px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-image: none;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+
+    /* hover box */
+
+    .hoverbx {
+        position: absolute;
+        min-width: 300px;
+        background: #fff;
+        top: 0;
+        left: 30px;
+        display: none;
+        border: 1px solid #dcdcdc;
+        z-index: 10000;
+        flex-direction: column;
+    }
+
+        .hoverbx .dp-hoverr {
+            display: flex;
+            padding: 20px;
+            align-items: center;
+        }
+
+            .hoverbx .dp-hoverr img {
+                width: 80px;
+                height: 80px;
+                border-radius: 100%;
+                object-fit: cover;
+            }
+
+            .hoverbx .dp-hoverr .dp-contact {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+                padding-left: 20px;
+                width: calc(100% - 80px);
+            }
+
+                .hoverbx .dp-hoverr .dp-contact h4 {
+                    font-size: 18px;
+                }
+
+                .hoverbx .dp-hoverr .dp-contact a {
+                    font-size: 15px;
+                    color: #646464;
+                }
+
+        .hoverbx .hoveraction {
+            display: flex;
+            justify-content: start;
+            padding: 10px 20px 20px;
+            gap: 40px;
+            align-items: center;
+        }
+
+            .hoverbx .hoveraction > a > i {
+                font-size: 16px;
+            }
+
+    .img-container:hover .hoverbx {
+        /*display: flex;*/
+    }
+
+
+
+    .dx-datagrid-table.dx-datagrid-table-fixed:has(> tbody > tr:nth-child(7)) tr:nth-last-child(2) td:nth-child(2) .hoverbx,
+    .dx-datagrid-table.dx-datagrid-table-fixed:has(> tbody > tr:nth-child(7)) tr:nth-last-child(3) td:nth-child(2) .hoverbx,
+    .dx-datagrid-table.dx-datagrid-table-fixed:has(> tbody > tr:nth-child(7)) tr:nth-last-child(4) td:nth-child(2) .hoverbx,
+    .dx-datagrid-table.dx-datagrid-table-fixed:has(> tbody > tr:nth-child(7)) tr:nth-last-child(5) td:nth-child(2) .hoverbx {
+        top: inherit !important;
+        Bottom: calc(100% - 30px) !important;
+    }
+
+    .dx-datagrid-table.dx-datagrid-table-fixed:has(> tbody > tr:nth-child(6)) tr:nth-last-child(3) td:nth-child(2) .hoverbx {
+        Bottom: calc(100% - 60px) !important;
+    }
+
+    .dx-datagrid-table.dx-datagrid-table-fixed:has(> tbody > tr:nth-child(6)) tr:nth-child(3) td:nth-child(2) .hoverbx,
+    .dx-datagrid-table.dx-datagrid-table-fixed:has(> tbody > tr:nth-child(6)) tr:nth-child(4) td:nth-child(2) .hoverbx,
+    .dx-datagrid-table.dx-datagrid-table-fixed:has(> tbody > tr:nth-child(6)) tr:nth-child(5) td:nth-child(2) .hoverbx {
+        top: 0 !important;
+        bottom: inherit !important;
+    }
+
+    /*     .dx-column-indicators {
+                    display: none !important;
+                }*/
+
+    @@media(min-width: 992px) {
+
+        div#filters {
+            position: absolute;
+            width: calc(100% - 250px);
+            z-index: 100;
+            top: -20px;
+        }
+    }
+
+
+    /* Desktop hover effect */
+    @@media (min-width: 768px) {
+        .img-container:hover .hoverbx {
+            display: flex;
+        }
+
+        .dx-scrollable-wrapper, .dx-scrollable-container {
+            min-height: 360px;
+        }
+    }
+
+    /* Mobile active state */
+    .hoverbx.active {
+        display: flex;
+    }
+
+    .hover-active .dx-scrollable-native.dx-scrollable-both,
+    .hover-active .dx-scrollable-native.dx-scrollable-both .dx-scrollable-container,
+    .hover-active .dx-field,
+    .hover-active .dx-datagrid-rowsview {
+        overflow: inherit !important;
+    }
+
+    .hoverbx.visible {
+        display: flex;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    @@media(max-width: 767px) {
+        .mbl-hide {
+            display: none;
+        }
+
+        button#resetFilters {
+            margin-top: 6px;
+            float: right;
+        }
+
+        .dropdown-open .dx-scrollable-native.dx-scrollable-both, .dropdown-open .dx-scrollable-native.dx-scrollable-both .dx-scrollable-container,
+        .hover-active .dx-scrollable-native.dx-scrollable-both, .hover-active .dx-scrollable-native.dx-scrollable-both .dx-scrollable-container {
+            overflow: inherit !important;
+        }
+
+        .dropdown-open div#dvGrid {
+            overflow: inherit !important;
+            height: auto !important;
+            min-height: calc(100vh - 260px);
+        }
+
+        .hoverbx {
+            min-width: 200px;
+        }
+
+            .hoverbx .dp-hoverr {
+                padding: 10px;
+            }
+
+                .hoverbx .dp-hoverr img {
+                    width: 60px;
+                    height: 60px;
+                }
+
+                .hoverbx .dp-hoverr .dp-contact {
+                    width: calc(100% - 60px);
+                    padding-left: 10px;
+                }
+
+                    .hoverbx .dp-hoverr .dp-contact h4 {
+                        font-size: 16px;
+                    }
+
+                    .hoverbx .dp-hoverr .dp-contact a {
+                        font-size: 13px;
+                    }
+
+            .hoverbx .hoveraction {
+                padding: 10px;
+                gap: 25px;
+            }
+
+                .hoverbx .hoveraction > a > i {
+                    font-size: 14px;
+                }
+    }
+</style>
+<div class="page-inner">
     <div class="page-header">
         <ul class="breadcrumbs mb-3">
             <li class="nav-home">
