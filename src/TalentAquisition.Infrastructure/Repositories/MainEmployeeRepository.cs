@@ -1,8 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Dapper;
+using Microsoft.EntityFrameworkCore;
 using TalentAquisition.Core.Dtos;
 using TalentAquisition.Core.IRepositories;
 using TalentAquisition.Infrastructure.Context;
-using TalentAquisition.Infrastructure.Extensions.Mappings;
 
 namespace TalentAquisition.Infrastructure.Repositories
 {
@@ -10,16 +10,22 @@ namespace TalentAquisition.Infrastructure.Repositories
     {
         private readonly TalentAquisitionDbContext _context;
 
+        public MainEmployeeRepository(TalentAquisitionDbContext context)
+        {
+            _context = context;
+        }
+
         public async Task<Response<IEnumerable<dynamic>>> GetAllAsync()
         {
             try
             {
-                var employees = await _context.Set<dynamic>()
-                    .FromSqlRaw("EXEC dbo.Get_ProspectiveEmployeesList 2")
-                    .AsNoTracking()
-                    .ToListAsync();
+                using (var conn = _context.Database.GetDbConnection())
+                {
+                    await conn.OpenAsync();
+                    var result = await conn.QueryAsync("EXEC dbo.Get_ProspectiveEmployeesList 2");
+                    return Response<IEnumerable<dynamic>>.SuccessResult(result);
+                }
 
-                return Response<IEnumerable<dynamic>>.SuccessResult(employees);
             }
             catch (Exception ex)
             {

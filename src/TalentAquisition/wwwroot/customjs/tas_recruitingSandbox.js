@@ -15,7 +15,7 @@ var tas_recruitingSandbox = {
             {
                 caption: "Source",
                 dataField: "LeadSource",
-                width: isMobile() ? 40 : 80
+                width: tas_helper.isMobile() ? 40 : 80
             },
             {
                 caption: "",
@@ -37,11 +37,11 @@ var tas_recruitingSandbox = {
                     }
                     if (options.data.Note == null) {
                         $("<div>", { "class": "img-container" })
-                            .append($("<button class='ViewEmployee btn CanViewEmployee BtnViewDropdown dropdown-toggle' data-toggle='dropdown' id='" + options.value + "'  actionfor='View'><i class='icon-radio-checked'></i></button><div class='hoverbx'><div class='dp-hoverr'><img src ='" + imageUrl + "' /><div class='dp-contact'><h4>" + options.data.CandidateName + "</h4><a href='mailto:" + options.data.Email + "'>" + options.data.Email + "</a><a href='tel:" + options.data.Phone + "'>" + options.data.Phone + "</a></div></div><div class='hoveraction'><a style='display: " + IsEdit + ";' href='" + formURL + "' class='dropdown-item ViewEmployee  CanEditEmployee' title='Edit'><i class='glyphicon glyphicon-edit'></i></a><a style='display: " + IsView + ";' href='" + viewOnlyFormURL + "' class='dropdown-item ViewDetails' title='View Details'><i class='glyphicon glyphicon-search'></i></a><a style='display: " + IsDelete + ";' href='#' class='CanDeleteEmployee dropdown-item' title='Delete' id='" + options.value + "' data-toggle='modal' data-target='#deletemodal'><i class='icon-bin'></i></a> <a style='display: " + IsAdd + ";' href='#' class='dropdown-item CanAddNote' id='" + options.value + "' title='Add Note' data-toggle='modal' data-target='#notemodal'><i class='glyphicon glyphicon-plus'></i></a></div></div>", { "src": options.value }))
+                            .append($("<button class='ViewEmployee btn CanViewEmployee BtnViewDropdown dropdown-toggle' data-toggle='dropdown' id='" + options.value + "'  actionfor='View'><i class='icon-radio-checked'></i></button><div class='hoverbx'><div class='dp-hoverr'><img src ='" + imageUrl + "' /><div class='dp-contact'><h4>" + options.data.CandidateName + "</h4><a href='mailto:" + options.data.Email + "'>" + options.data.Email + "</a><a href='tel:" + options.data.Phone + "'>" + options.data.Phone + "</a></div></div><div class='hoveraction'><a style='display: block;' href='" + formURL + "' class='dropdown-item ViewEmployee  CanEditEmployee' title='Edit'><i class='glyphicon glyphicon-edit'></i></a><a style='display: block;' href='" + viewOnlyFormURL + "' class='dropdown-item ViewDetails' title='View Details'><i class='glyphicon glyphicon-search'></i></a><a style='display: block;' href='#' class='CanDeleteEmployee dropdown-item' title='Delete' id='" + options.value + "' data-toggle='modal' data-target='#deletemodal'><i class='icon-bin'></i></a> <a style='display: " + IsAdd + ";' href='#' class='dropdown-item CanAddNote' id='" + options.value + "' title='Add Note' data-toggle='modal' data-target='#notemodal'><i class='glyphicon glyphicon-plus'></i></a></div></div>", { "src": options.value }))
                             .appendTo(container);
                     } else {
                         $("<div>", { "class": "img-container" })
-                            .append($("<button class='ViewEmployee btn CanViewEmployee BtnViewDropdown dropdown-toggle' data-toggle='dropdown' id='" + options.value + "'  actionfor='View'><i class='icon-radio-checked'></i></button><div class='hoverbx'><div class='dp-hoverr'><img src ='" + imageUrl + "' /><div class='dp-contact'><h4>" + options.data.CandidateName + "</h4><a href='mailto:" + options.data.Email + "'>" + options.data.Email + "</a><a href='tel:" + options.data.Phone + "'>" + options.data.Phone + "</a></div></div><div class='hoveraction'><a style='display: " + IsView + ";' href='#' class='dropdown-item viewnote'  data-toggle='popover' title='Modified on: " + options.data.NoteTime + " - " + options.data.Title + "' data-content='" + options.data.Note + "'><i class='icon-eye'></i></a><a style='display: " + IsEdit + ";' href='" + formURL + "' class='dropdown-item ViewEmployee  CanEditEmployee' title='Edit'><i class='glyphicon glyphicon-edit'></i></a><a style='display: " + IsView + ";' href='" + viewOnlyFormURL + "' class='dropdown-item ViewDetails' title='View Details'><i class='glyphicon glyphicon-search'></i></a><a style='display: " + IsDelete + ";' href='#' class='CanDeleteEmployee dropdown-item' title='Delete' id='" + options.value + "' data-toggle='modal' data-target='#deletemodal'><i class='icon-bin'></i></a> <a style='display: " + IsAdd + ";' href='#' class='dropdown-item CanAddNote' id='" + options.value + "' title='Add Note' data-toggle='modal' data-target='#notemodal'><i class='glyphicon glyphicon-plus'></i></a></div></div>", { "src": options.value }))
+                            .append($("<button class='ViewEmployee btn CanViewEmployee BtnViewDropdown dropdown-toggle' data-toggle='dropdown' id='" + options.value + "'  actionfor='View'><i class='icon-radio-checked'></i></button><div class='hoverbx'><div class='dp-hoverr'><img src ='" + imageUrl + "' /><div class='dp-contact'><h4>" + options.data.CandidateName + "</h4><a href='mailto:" + options.data.Email + "'>" + options.data.Email + "</a><a href='tel:" + options.data.Phone + "'>" + options.data.Phone + "</a></div></div><div class='hoveraction'><a style='display: block;' href='#' class='dropdown-item viewnote'  data-toggle='popover' title='Modified on: " + options.data.NoteTime + " - " + options.data.Title + "' data-content='" + options.data.Note + "'><i class='icon-eye'></i></a><a style='display: block;' href='" + formURL + "' class='dropdown-item ViewEmployee  CanEditEmployee' title='Edit'><i class='glyphicon glyphicon-edit'></i></a><a style='display: block;' href='" + viewOnlyFormURL + "' class='dropdown-item ViewDetails' title='View Details'><i class='glyphicon glyphicon-search'></i></a><a style='display: block;' href='#' class='CanDeleteEmployee dropdown-item' title='Delete' id='" + options.value + "' data-toggle='modal' data-target='#deletemodal'><i class='icon-bin'></i></a> <a style='display: " + IsAdd + ";' href='#' class='dropdown-item CanAddNote' id='" + options.value + "' title='Add Note' data-toggle='modal' data-target='#notemodal'><i class='glyphicon glyphicon-plus'></i></a></div></div>", { "src": options.value }))
                             .appendTo(container);
                     }
                 }
@@ -66,7 +66,7 @@ var tas_recruitingSandbox = {
             {
                 caption: "Status",
                 dataField: "Status",
-                visible: isMobile() ? false : true
+                visible: tas_helper.isMobile() ? false : true
             },
             {
                 dataField: "Volume",
@@ -80,13 +80,13 @@ var tas_recruitingSandbox = {
             {
                 caption: "NMLS",
                 dataField: "NMLS",
-                visible: isMobile() ? false : true
+                visible: tas_helper.isMobile() ? false : true
             },
             {
                 caption: "Last Touched",
                 dataField: "LastTouch",
                 dataType: "number",
-                visible: isMobile() ? false : true
+                visible: tas_helper.isMobile() ? false : true
             },
             {
                 caption: "Action Items",
@@ -140,7 +140,7 @@ var tas_recruitingSandbox = {
             {
                 caption: "LinkedIn Profile",
                 dataField: "LinkedInProfile",
-                visible: isMobile() ? false : true
+                visible: tas_helper.isMobile() ? false : true
             },
             {
                 caption: "Ownership",

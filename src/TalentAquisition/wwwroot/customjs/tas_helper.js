@@ -1,12 +1,4 @@
-﻿var tas_helper = { 
-
-    formatDateToDDMMYYYY: function (dateStr) {
-        const date = new Date(dateStr);
-        const day = String(date.getDate()).padStart(2, '0');
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const year = date.getFullYear();
-        return `${year}-${month}-${day}`;
-    },
+﻿var tas_helper = {
     
     notify: function (msg, type) {
         //https://www.jqueryscript.net/other/Highly-Customizable-jQuery-Toast-Message-Plugin-Toastr.html
@@ -178,30 +170,7 @@
         }).dxDataGrid('instance');
     },
 
-    formatDate(date) {
-        const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
-        return new Date(date).toLocaleDateString(undefined, options);
-    },
-
-    validateDate: function() {
-        const input = document.getElementById('TO_DATE');
-        const date = new Date(input.value);
-        if (tas_helper.isValidDate(date)) {
-        } else {
-            tas_helper.notify("Invalid date: Please enter a valid date.", 2);
-            input.value = new Date().toISOString().split('T')[0];
-        }
-    },
-
-    isValidDate: function(date) {
-        const year = date.getFullYear();
-        const month = date.getMonth();
-        const day = date.getDate();
-        const daysInMonth = [31, tas_helper.isLeapYear(year) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-        return day > 0 && day <= daysInMonth[month];
-    },
-
-    isLeapYear: function(year) {
-        return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
-    },
+    isMobile: function () {
+        return $(window).width() < 768;
+    }
 }
