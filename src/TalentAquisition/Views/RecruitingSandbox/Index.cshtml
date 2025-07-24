@@ -1,0 +1,52 @@
+﻿<div class="page-inner">
+    <div class="page-header">
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a href="#">
+                    <i class="fas fa-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="fas fa-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Home</a>
+            </li>
+            <li class="separator">
+                <i class="fas fa-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">@ViewData["Title"]</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row pt-4">
+                        <div class="col-6">
+                            <div class="card-title">@ViewData["Title"]</div>
+                        </div>
+                        <div class="col-6 text-end">
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#upsertModal">
+                                <i class="bi bi-plus-circle"></i> &nbsp; Add New
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12">
+                            <div id="gridContainer" style="width:100%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/customjs/tas_recruitingSandbox.js"></script>
+}

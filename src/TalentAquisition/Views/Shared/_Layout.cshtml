@@ -145,6 +145,25 @@
                                class="collapsed"
                                aria-expanded="false">
                                 <i class="fas fa-home"></i>
+                                <p>Home</p>
+                                <span class="caret"></span>
+                            </a>
+                            <div class="collapse" id="dashboard">
+                                <ul class="nav nav-collapse">
+                                    <li>
+                                        <a asp-action="Index" asp-controller="RecruitingSandbox">
+                                            <span class="sub-item">Recruiting Sandbox List</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a data-bs-toggle="collapse"
+                               href="#dashboard"
+                               class="collapsed"
+                               aria-expanded="false">
+                                <i class="fas fa-book"></i>
                                 <p>Setup Tables</p>
                                 <span class="caret"></span>
                             </a>
