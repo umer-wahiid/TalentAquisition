@@ -1,0 +1,261 @@
+﻿@model TalentAquisition.Core.Dtos.MainEmployeeDto
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-inner">
+    <div class="page-header">
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a href="#">
+                    <i class="fas fa-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="fas fa-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Home</a>
+            </li>
+            <li class="separator">
+                <i class="fas fa-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">@ViewData["Title"]</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="sendboxformcontainer">
+                        <div class="row">
+                            <input type="hidden" class="form-control" id="createdAt" name="createdAt" />
+                            <input type="hidden" class="form-control" id="createdBy" name="createdBy" />
+                            <input type="hidden" class="form-control" id="employeeId" name="employeeId" />
+                            <input type="hidden" id="lastTouch" name="lastTouch" />
+                            <input type="hidden" id="fullName" name="fullName" />
+                            <input type="hidden" id="employeeId" name="employeeId" />
+
+                            <div class="col-lg-4 col-md-6 form-group">
+                                <label for="firstName">First Name *</label>
+                                <input type="text" class="form-control" placeholder="First Name" id="firstName" name="firstName" maxlength="90" />
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 form-group">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" class="form-control" placeholder="Last Name" id="lastName" name="lastName" maxlength="90" />
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 form-group">
+                                <label for="cellPhone">Phone *</label>
+                                <input type="text" class="form-control" id="cellPhone" name="cellPhone" placeholder="(123) 456-7890" maxlength="50" />
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 form-group">
+                                <label for="email">Email *</label>
+                                <input type="text" class="form-control" placeholder="Email" id="email" name="email" maxlength="90" />
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 form-group">
+                                <label for="nmlsId">NMLS *</label>
+                                <input type="text" class="form-control" placeholder="NMLS No." id="nmlsId" name="nmlsId" maxlength="90" />
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 form-group">
+                                <label for="estimatedStartDate">Anticipated Start Date *</label>
+                                <div class="input-group date datetimepicker">
+                                    <input type="text" class="DocumentField form-control" id="estimatedStartDate" name="estimatedStartDate" placeholder="Anticipated Start Date" data-index="0" />
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 form-group">
+                                <label for="PictureUpload">Upload Picture of Candidate (JPG, JPEG, PNG)</label>
+                                <div class="input-group">
+                                    <input type="file" id="PictureUpload" name="PictureFile"
+                                           data-target="#Picture" class="form-control file-upload"
+                                           accept=".jpg,.jpeg,.png" />
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default view-file-btn" data-source="#Picture">
+                                            <span class="fa fa-eye"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                                <input type="hidden" class="form-control" id="Picture" name="picture" />
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 form-group">
+                                <label for="linkedIn">LinkedIn Profile</label>
+                                <input type="text" class="form-control" placeholder="Linked In" id="linkedIn" name="linkedIn" maxlength="300" />
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 form-group">
+                                <label for="leadSourceId">Lead Source</label>
+                                <div id="leadSourceId" class="form-control"></div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 form-group">
+                                <label for="statusId">Status</label>
+                                <div id="statusId" class="form-control"></div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 form-group">
+                                <label for="typeId">Type</label>
+                                <div id="typeId" class="form-control"></div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 form-group">
+                                <label for="currentCompanyId">Current Company</label>
+                                <div id="currentCompanyId" class="form-control"></div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 form-group">
+                                <label for="reference">Who Referred</label>
+                                <input type="text" class="form-control" placeholder="Referrence" id="reference" name="reference" maxlength="90" />
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 form-group">
+                                <label for="streetAddress">Address</label>
+                                <input type="text" class="form-control" id="streetAddress" placeholder="Address" name="streetAddress" maxlength="240" />
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 form-group">
+                                <label for="stateId">State</label>
+                                <div id="stateId" class="form-control"></div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 form-group">
+                                <label for="volume">Volume ($$)</label>
+                                <input type="text" class="form-control" placeholder="$" id="volume" name="volume" maxlength="20" />
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 form-group">
+                                <label for="lendingFootprintId">Lending Footprint</label>
+                                <div id="lendingFootprints" class="form-control"></div>
+                                <input type="hidden" id="lendingFootprintId" name="lendingFootprintId" />
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 form-group">
+                                <label for="hierarchyId">Hierarchy</label>
+                                <div id="hierarchyId" class="form-control"></div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 form-group">
+                                <label for="ownership">BM P&L Ownership</label>
+                                <input type="text" class="form-control" placeholder="BM P&L Ownership" id="ownership" name="ownership" maxlength="250" />
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 form-group">
+                                <label for="TrackingDocUpload">Upload Tracking Document (PDF, DOC, DOCX, XLS, XLSX)</label>
+                                <div class="input-group">
+                                    <input type="file" id="TrackingDocUpload" data-target="#trackingDoc"
+                                           name="TrackingDocFile" accept=".pdf,.doc,.docx,.xls,.xlsx"
+                                           class="form-control file-upload" />
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default view-file-btn" data-source="#trackingDoc">
+                                            <span class="fa fa-eye"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                                <input type="hidden" class="form-control" id="trackingDoc" name="trackingDoc" />
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 form-group">
+                                <label for="PricingDocUpload">Upload Pricing Document (PDF, DOC, DOCX, XLS, XLSX)</label>
+                                <div class="input-group">
+                                    <input type="file" id="PricingDocUpload" data-target="#pricingDoc"
+                                           name="PricingDocFile" accept=".pdf,.doc,.docx,.xls,.xlsx"
+                                           class="form-control file-upload" />
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default view-file-btn" data-source="#pricingDoc">
+                                            <span class="fa fa-eye"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                                <input type="hidden" class="form-control" id="pricingDoc" name="pricingDoc" />
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 form-group">
+                                <label for="ProformaDocUpload">Upload Proforma Document (PDF, DOC, DOCX, XLS, XLSX)</label>
+                                <div class="input-group">
+                                    <input type="file" id="ProformaDocUpload" data-target="#proformaDoc"
+                                           name="ProformaDocFile" accept=".pdf,.doc,.docx,.xls,.xlsx"
+                                           class="form-control file-upload" />
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default view-file-btn" data-source="#proformaDoc">
+                                            <span class="fa fa-eye"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                                <input type="hidden" class="form-control" id="proformaDoc" name="proformaDoc" />
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 form-group">
+                                <label for="uniqueProductsRequest">Unique Loan Products Requested</label>
+                                <textarea class="form-control" id="uniqueProductsRequest" name="uniqueProductsRequest" maxlength="900"></textarea>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 form-group">
+                                <label for="gifts">Gifts</label>
+                                <textarea class="form-control" id="gifts" name="gifts" maxlength="1000"></textarea>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 form-group">
+                                <label for="actionItems">Action Items</label>
+                                <textarea class="form-control" id="actionItems" name="actionItems" maxlength="1000"></textarea>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 form-group">
+                                <label style="width:100%" class="mbl-hide">&nbsp;</label>
+                                <div class="row m_-5">
+                                    <div class="col-lg-6 col-md-6 form-group">
+                                        <label>
+                                            <input type="checkbox" id="isFormerEmployee" name="isFormerEmployee" />
+                                            Former Employee
+                                        </label>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 form-group">
+                                        <label>
+                                            <input type="checkbox" id="isUnfollow" name="isUnfollow" />
+                                            Unfollow
+                                        </label>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 form-group">
+                                        <label>
+                                            <input type="checkbox" id="isCompleted" name="isCompleted" />
+                                            Completed
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sendsavebtnsbotm text-right">
+                        <button type="button" onclick="window.location.href='/RecruitingSandbox/Index'" class="btn btn-default" id="cancelBtn">Back</button>
+                        <button type="submit" class="AddRecruitingEmployee btn btn-default">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        var LeadSource = @Html.Raw(Json.Serialize(ViewBag.LeadSource));
+        var Status = @Html.Raw(Json.Serialize(ViewBag.Status));
+        var Type = @Html.Raw(Json.Serialize(ViewBag.Type));
+        var Company = @Html.Raw(Json.Serialize(ViewBag.Company));
+        var State = @Html.Raw(Json.Serialize(ViewBag.State));
+        var Hierarchy = @Html.Raw(Json.Serialize(ViewBag.Hierarchy));
+    </script>
+    <script src="~/customjs/tas_recruitingSandboxForm.js"></script>
+}

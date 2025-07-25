@@ -22,6 +22,19 @@ namespace TalentAquisition.Controllers
             ViewData["Title"] = "Lead";
             return View();
         }
+        
+        public async Task<IActionResult> Create()
+        {
+            ViewData["Title"] = "Create Lead";
+            ViewBag.LeadSource = await _ddlService.GetLeadSourceDropdownAsync();
+            ViewBag.Status = await _ddlService.GetStatusDropdownAsync();
+            ViewBag.Type = await _ddlService.GetTypeDropdownAsync();
+            ViewBag.Company = await _ddlService.GetCompanyDropdownAsync();
+            ViewBag.State = await _ddlService.GetStateDropdownAsync();
+            ViewBag.Hierarchy = await _ddlService.GetHierarchyDropdownAsync();
+
+            return View();
+        }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()

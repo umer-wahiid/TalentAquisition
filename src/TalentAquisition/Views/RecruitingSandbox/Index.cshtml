@@ -51,9 +51,6 @@
                 margin-right: 10px;
             }
 
-    /*    .dx-toolbar-items-container {
-                display: none;
-            }*/
 
     .dx-datagrid-table.dx-datagrid-table-fixed:has(> tbody > tr:nth-child(7)) tr:nth-last-child(2) td:nth-child(2) .dropdown-menu,
     .dx-datagrid-table.dx-datagrid-table-fixed:has(> tbody > tr:nth-child(7)) tr:nth-last-child(3) td:nth-child(2) .dropdown-menu,
@@ -63,10 +60,7 @@
     }
 
     .img-container .dropdown-menu {
-        position: absolute; /* Not absolute */
-        /*top: auto !important;
-                left: auto !important;
-                z-index: 9999 !important;*/
+        position: absolute;
     }
 
     .dx-datagrid .dx-column-lines > td:last-child {
@@ -79,10 +73,6 @@
 
     .dx-datagrid .dx-column-lines > td:nth-child(9) {
         text-align: right !important;
-    }
-
-    .dx-scrollable-wrapper, .dx-scrollable-container {
-        /*min-height: 300px;*/
     }
 
     .form > .dx-fieldset > .dx-field {
@@ -107,7 +97,7 @@
 
     .btn.BtnViewDropdown {
         display: inline-block;
-        padding: 3px 9px;
+        padding: 3px 6px;
         margin-bottom: 0;
         font-size: 14px;
         font-weight: 400;
@@ -184,12 +174,6 @@
                 font-size: 16px;
             }
 
-    .img-container:hover .hoverbx {
-        /*display: flex;*/
-    }
-
-
-
     .dx-datagrid-table.dx-datagrid-table-fixed:has(> tbody > tr:nth-child(7)) tr:nth-last-child(2) td:nth-child(2) .hoverbx,
     .dx-datagrid-table.dx-datagrid-table-fixed:has(> tbody > tr:nth-child(7)) tr:nth-last-child(3) td:nth-child(2) .hoverbx,
     .dx-datagrid-table.dx-datagrid-table-fixed:has(> tbody > tr:nth-child(7)) tr:nth-last-child(4) td:nth-child(2) .hoverbx,
@@ -208,10 +192,6 @@
         top: 0 !important;
         bottom: inherit !important;
     }
-
-    /*     .dx-column-indicators {
-                    display: none !important;
-                }*/
 
     @@media(min-width: 992px) {
 
@@ -341,9 +321,9 @@
                             <div class="card-title">@ViewData["Title"]</div>
                         </div>
                         <div class="col-6 text-end">
-                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#upsertModal">
+                            <a class="btn btn-primary" asp-action="Create" asp-controller="RecruitingSandbox">
                                 <i class="bi bi-plus-circle"></i> &nbsp; Add New
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
